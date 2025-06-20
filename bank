@@ -1,69 +1,90 @@
-def show_balance(balance):
-    print("*********************")
-    print(f"Your balance is ${balance:.2f}")
-    print("*********************")
+import java.util.Scanner;
 
-def deposit():
-    print("*********************")
-    amount = float(input("Enter an amount to be deposited: "))
-    print("*********************")
-    if amount < 0:
-        print("*********************")
-        print("That's not a valid amount")
-        print("*********************")
-        return 0
-    else:
-        return amount
+public class SimpleBankingSystem {
 
-def withdraw(balance):
-    print("*********************")
-    amount = float(input("Enter amount to be withdrawn: "))
-    print("*********************")
+    static Scanner sc = new Scanner(System.in);
 
-    if amount > balance:
-        print("*********************")
-        print("Insufficient funds")
-        print("*********************")
-        return 0
-    elif amount < 0:
-        print("*********************")
-        print("Amount must be greater than 0")
-        print("*********************")
-        return 0
-    else:
-        return amount
+    public static void showBalance(double balance) {
+        System.out.println("*********************");
+        System.out.printf("Your balance is $%.2f%n", balance);
+        System.out.println("*********************");
+    }
 
-def main():
-    balance = 0
-    is_running = True
+    public static double deposit() {
+        System.out.println("*********************");
+        System.out.print("Enter an amount to be deposited: ");
+        double amount = sc.nextDouble();
+        System.out.println("*********************");
 
-    while is_running:
-        print("*********************")
-        print("   Banking Program   ")
-        print("*********************")
-        print("1.Show Balance")
-        print("2.Deposit")
-        print("3.Withdraw")
-        print("4.Exit")
-        print("*********************")
-        choice = input("Enter your choice (1-4): ")
+        if (amount < 0) {
+            System.out.println("*********************");
+            System.out.println("That's not a valid amount");
+            System.out.println("*********************");
+            return 0;
+        } else {
+            return amount;
+        }
+    }
 
-        if choice == '1':
-            show_balance(balance)
-        elif choice == '2':
-            balance += deposit()
-        elif choice == '3':
-            balance -= withdraw(balance)
-        elif choice == '4':
-            is_running = False
-        else:
-            print("*********************")
-            print("That is not a valid choice")
-            print("*********************")
+    public static double withdraw(double balance) {
+        System.out.println("*********************");
+        System.out.print("Enter amount to be withdrawn: ");
+        double amount = sc.nextDouble();
+        System.out.println("*********************");
 
-    print("*********************")
-    print("Thank you! Have a nice day!")
-    print("*********************")
+        if (amount > balance) {
+            System.out.println("*********************");
+            System.out.println("Insufficient funds");
+            System.out.println("*********************");
+            return 0;
+        } else if (amount < 0) {
+            System.out.println("*********************");
+            System.out.println("Amount must be greater than 0");
+            System.out.println("*********************");
+            return 0;
+        } else {
+            return amount;
+        }
+    }
 
-if __name__ == '__main__':
-    main()
+    public static void main(String[] args) {
+        double balance = 0;
+        boolean isRunning = true;
+
+        while (isRunning) {
+            System.out.println("*********************");
+            System.out.println("   Banking Program   ");
+            System.out.println("*********************");
+            System.out.println("1. Show Balance");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Exit");
+            System.out.println("*********************");
+            System.out.print("Enter your choice (1-4): ");
+            String choice = sc.next();
+
+            switch (choice) {
+                case "1":
+                    showBalance(balance);
+                    break;
+                case "2":
+                    balance += deposit();
+                    break;
+                case "3":
+                    balance -= withdraw(balance);
+                    break;
+                case "4":
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("*********************");
+                    System.out.println("That is not a valid choice");
+                    System.out.println("*********************");
+            }
+        }
+
+        System.out.println("*********************");
+        System.out.println("Thank you! Have a nice day!");
+        System.out.println("*********************");
+    }
+}
